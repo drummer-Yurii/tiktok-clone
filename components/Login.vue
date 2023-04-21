@@ -4,7 +4,13 @@
     <div class="px-6 pb-1.5 text-[15px]">Email address</div>
 
     <div class="px-6 pb-2">
-
+        <TextInput 
+            placeholder="Email address"
+            v-model:input="email"
+            inputType="email"
+            :autoFocus="true"
+            error=""
+        />
     </div>
 </template>
 

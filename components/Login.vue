@@ -35,7 +35,21 @@
 </template>
 
 <script setup>
+const { $userStore, $generalStore } = useNuxtApp()
 let email = ref(null)
 let password = ref(null)
 let errors = ref(null)
+
+const login = async () => {
+    errors.value = null
+    try {
+        await $userStore.getTokens()
+        await $userStore.login(email.value, password.value)
+        await $userStore.getUser()
+        
+        $generalStore.isLoginOpen = false
+    } catch (error) {
+        console.log(error);
+    }
+}
 </script>

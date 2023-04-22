@@ -11,5 +11,3 @@ export default defineNuxtPlugin((NuxtApp) => {
         }
     }
 })
-
-const { $userStore } = useNuxtApp()

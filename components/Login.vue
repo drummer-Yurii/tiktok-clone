@@ -9,8 +9,8 @@
             v-model:input="email"
             inputType="email"
             :autoFocus="true"
-            error=""
-        />
+            :error="errors && errors.email ? errors.email[0] : ''"
+        />  
     </div>
 
     <div class="px-6 pb-2">
@@ -49,7 +49,7 @@ const login = async () => {
         
         $generalStore.isLoginOpen = false
     } catch (error) {
-        console.log(error);
+        errors.value = error.response.data.errors
     }
 }
 </script>

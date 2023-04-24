@@ -73,6 +73,11 @@ export const useGeneralStore = defineStore('general', {
                     res.image = user.image
                 }
             }
+        },
+
+        async getAllUsersAndPosts() {
+            let res = await $axios.get('/api/home')
+            this.posts = res.data
         }
     },
     persist: true

@@ -76,6 +76,8 @@ const route = useRoute()
 
 let show = ref(false)
 
+definePageMeta({ middleware: 'auth' })
+
 onMounted(async () => {
     try {
         await $profileStore.getProfile(route.params.id)

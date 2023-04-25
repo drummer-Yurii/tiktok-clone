@@ -253,6 +253,45 @@ watch(() => isLoaded.value, () => {
     }
 })
 
+const loopThroughPostsDown = () => {
+    setTimeout(() => {
+        let idArrayReversed = $generalStore.ids.reverse()
+        let isBreak = false
+
+        for (let i = 0; i < idArrayReversed.length; i++) {
+            const id = idArrayReversed[i];
+            if (id < route.params.id) {
+                router.push(`/post/${id}`)
+                isBreak = true
+                return
+            }
+        }
+
+        if (!isBreak) {
+            router.push(`/post/${idArrayReversed[0]}`)
+        }
+    }, 300)
+}
+
+const loopThroughPostsUp = () => {
+    setTimeout(() => {
+        let isBreak = false
+
+        for (let i = 0; i < $generalStore.ids.length; i++) {
+            const id = $generalStore.ids[i];
+            if (id > route.params.id) {
+                router.push(`/post/${id}`)
+                isBreak = true
+                return
+            }
+        }
+
+        if (!isBreak) {
+            router.push(`/post/${$generalStore.ids[0]}`)
+        }
+    }, 300)
+}
+
 const isLiked = computed(() => {
     let res = $generalStore.selectedPost.likes.find(like => like.user_id === $userStore.id)
     if (res) {

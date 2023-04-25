@@ -316,6 +316,19 @@ const unlikePost = async () => {
     }
 }
 
+const deletePost = async () => {
+    let res = confirm('Are you sure you want to delete this post?')
+    try {
+        if (res) {
+            await $userStore.deletePost($generalStore.selectedPost)
+            await $profileStore.getProfile($userStore.id)
+            router.push(`/profile/${$userStore.id}`)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const addComment = async () => {
     try {
         await $userStore.addComment($generalStore.selectedPost, comment.value)

@@ -286,4 +286,15 @@ const addComment = async () => {
         console.log(error);
     }
 }
+
+const deleteComment = async (post, commentId) => {
+    let res = confirm('Are you sire you want to delete this comment?')
+    try {
+        if (res) {
+            await $userStore.deleteComment(post, commentId)
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
 </script>

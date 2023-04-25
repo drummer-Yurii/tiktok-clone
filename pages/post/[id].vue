@@ -252,4 +252,28 @@ watch(() => isLoaded.value, () => {
         setTimeout(() => video.value.play(), 500)
     }
 })
+
+const isLiked = computed(() => {
+    let res = $generalStore.selectedPost.likes.find(like => like.user_id === $userStore.id)
+    if (res) {
+        return true
+    }
+    return false
+})
+
+const likePost = async (post) => {
+    try {
+        await $userStore.likePost($generalStore.selectedPost, true)
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const unlikePost = async (post) => {
+    try {
+        await $userStore.unlikePost($generalStore.selectedPost, true)
+    } catch (error) {
+        console.log(error);
+    }
+}
 </script>
